@@ -14,6 +14,7 @@ To run tests continually while editing run `grunt watch` in your project. To run
   camelcase: false # Do not force use of camelCase.
   curly: true # Force code blocks after flow control statement.
   eqeqeq: true # Force === for equality checking.
+  esnext: true # Ensure Promise is available in newer node versions
   freeze: true # Don't allow fiddling with prototypes of native objects
   immed: true # Prohibit the use of immediate function invocations without wrapping them in parentheses
   indent: 2 # Two spaces indent
