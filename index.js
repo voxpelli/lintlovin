@@ -41,7 +41,6 @@ exports.initConfig = function (grunt, config, options) {
     lintspaces: {
       files: _.union([
         '<%= jshint.files %>',
-        'package.json',
       ], options.spaceFiles || []),
       options: {
         editorconfig: '.editorconfig',
