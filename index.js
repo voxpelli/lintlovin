@@ -76,7 +76,7 @@ exports.initConfig = function (grunt, config, options) {
         reportFormats: ['lcov']
       },
       basic: {
-        src: ['test/**/*.js', '!test/integration/**/*.js']
+        src: options.integrationTravis && process.env.TRAVIS ? ['test/**/*.js'] : ['test/**/*.js', '!test/integration/**/*.js']
       },
       integration: {
         src: ['test/integration/**/*.js']
