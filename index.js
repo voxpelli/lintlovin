@@ -121,15 +121,22 @@ exports.initConfig = function (grunt, config, options) {
   testTasks = testTasks.concat(options.extraTestTasks || []);
   integrationTestTasks = integrationTestTasks.concat(options.extraTestAllTasks || []);
 
-  // Uhm, HACK! But WTF Grunt!
-  var cwd = process.cwd();
-  process.chdir(__dirname);
   // Manually load the plugins so that we don't pollute the parent module
   // with loads of peer dependencies.
   plugins.forEach(function loadTasks(name) {
+    var cwd;
+    // Uhm, HACK! But WTF Grunt!
+    if (lib.fs.existsSync(__dirname + '/node_modules/' + name)) {
+      cwd = process.cwd();
+      process.chdir(__dirname);
+    }
+
     grunt.loadNpmTasks(name);
+
+    if (cwd) {
+      process.chdir(cwd);
+    }
   });
-  process.chdir(cwd);
 
   // Whenever we have some special built tasks, add them into the /tasks folder and uncomment the line below
   // grunt.loadTasks(lib.path.join(__dirname, 'tasks'));
