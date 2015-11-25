@@ -27,8 +27,8 @@ exports.initConfig = function (grunt, config, options) {
   // Default task options
   var defaults = {
     pkg: grunt.file.readJSON('package.json'),
-    jshint: {
-      files: _.union([
+    eslint: {
+      src: _.union([
         '*.js',
         'lib/**/*.js',
         'test/**/*.js',
@@ -36,11 +36,10 @@ exports.initConfig = function (grunt, config, options) {
         'cli/**/*.js',
         'tasks/**/*.js',
       ], options.jsFiles || []),
-      options: { jshintrc: '.jshintrc' }
     },
     lintspaces: {
       files: _.union([
-        '<%= jshint.files %>',
+        '<%= eslint.src %>',
       ], options.spaceFiles || []),
       options: {
         editorconfig: '.editorconfig',
@@ -60,7 +59,7 @@ exports.initConfig = function (grunt, config, options) {
 
   if (!options.noDependencyCheck) {
     defaults['dependency-check'] = {
-      files: _.union(['<%= jshint.files %>'], options.dependencyFiles || []),
+      files: _.union(['<%= eslint.src %>'], options.dependencyFiles || []),
       options: {
         excludeUnusedDev: true,
         ignoreUnused: options.ignoreUnusedDependencies || [],
@@ -84,29 +83,18 @@ exports.initConfig = function (grunt, config, options) {
     };
   }
 
-  if (!options.noJSCS) {
-    defaults.jscs = {
-      src: '<%= jshint.files %>',
-    };
-  }
-
   _.defaults(config, defaults);
   grunt.initConfig(config);
 
   var plugins = [
     'grunt-notify',
     'grunt-lintspaces',
-    'grunt-contrib-jshint',
+    'grunt-eslint',
     'grunt-contrib-watch',
   ];
 
-  var testTasks = ['lintspaces', 'jshint', 'setTestEnv'];
+  var testTasks = ['lintspaces', 'eslint', 'setTestEnv'];
   var integrationTestTasks = options.noIntegration ? ['test'] : ['test', 'mocha_istanbul:integration'];
-
-  if (!options.noJSCS) {
-    plugins.push('grunt-jscs');
-    testTasks.push('jscs');
-  }
 
   if (!options.noDependencyCheck) {
     plugins.push('dependency-check');

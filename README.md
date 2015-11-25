@@ -6,38 +6,16 @@ On install (`npm install lintlovin --save-dev`) it will set up a Grunt file, `.e
 
 To run tests continually while editing run `grunt watch` in your project. To run tests manually just run `npm test`.
 
-## JSHint options
+## ESLint options
 
-```yaml
-  asi: false # Don't allow missing semicolons.
-  bitwise: true # Bitwise ops are forbidden.
-  camelcase: false # Do not force use of camelCase.
-  curly: true # Force code blocks after flow control statement.
-  eqeqeq: true # Force === for equality checking.
-  esnext: true # Ensure Promise is available in newer node versions
-  freeze: true # Don't allow fiddling with prototypes of native objects
-  immed: true # Prohibit the use of immediate function invocations without wrapping them in parentheses
-  indent: 2 # Two spaces indent
-  latedef: nofunc # Only allow late definition of functions.
-  newcap: true # Force capitalisation of constructor functions
-  noarg: true # Prohibit the use of arguments.caller and arguments.callee.
-  noempty: true # Warn when you have an empty block in your code.
-  nonbsp: true # Catch non-breaking whitespace.
-  nonew: true # Prohibit the use of constructor functions for side-effects.
-  quotmark: single # Single quotes for strings.
-  strict: true # Strict mode!
-  undef: true # Prohibit the use of explicitly undeclared variables.
-  unused: true # Warns when you define and never use your variables.
-```
-
-Rationale for not forcing camelCase: It's quite common to get data from modules and APIs that doesn't use camel case, that would then generate errors when you try to access non-camel properties.
+By default uses [semistandard](https://github.com/Flet/semistandard), but this is easily overrideable through the `.eslintrc` in ones own project.
 
 ## Available Grunt tasks
 
 The `npm`-based commands *don't* need [grunt-cli](https://github.com/gruntjs/grunt-cli), but the `grunt` commands do.
 
 * **default** – the default task, the one invoked when running just `grunt`, will if no additional tasks are added just run the `test` task.
-* **test** – lints all files to the defined JSHint and EditorConfig coding style guidelines and, unless `noMocha` has been set to `true`, runs all tests in a `test/`-folder if such a one exist, with the exclusion of any tests in a `test/integration/` folder. Can be invoked through either `grunt test` or `npm test`.
+* **test** – lints all files to the defined ESLint and EditorConfig coding style guidelines and, unless `noMocha` has been set to `true`, runs all tests in a `test/`-folder if such a one exist, with the exclusion of any tests in a `test/integration/` folder. Can be invoked through either `grunt test` or `npm test`.
 * **test-all** – like `test`, but also runs the tests in the `test/integration/` folder. Can be invoked through either `grunt test-all` or `npm run test-all`.
 * **watch** – watches for file changes and runs `test` on any relevant change. Can be invoked through `grunt watch`.
 
@@ -60,6 +38,5 @@ To be run from the parent project's Gruntfile.js. Initializes the `grunt` object
 * **noIntegration** – whether there are integration tests in `test/integration/` or not. Defaults to `true` if `test/integration/` exists.
 * **noMocha** – disables the [Mocha](http://visionmedia.github.io/mocha/) tests. Mocha tests are otherwise run if a `test/`-folder is found in the parent project.
 * **noTiming** – disables the [time-grunt](https://github.com/sindresorhus/time-grunt) performance output
-* **noJSCS** – disables the [jscs](http://jscs.info/) plugin
 * **noDependencyCheck** – disables the [dependency-check](https://github.com/maxogden/dependency-check) plugin
 * **ignoreUnusedDependencies** – ignores the specified modules when looking for unused modules

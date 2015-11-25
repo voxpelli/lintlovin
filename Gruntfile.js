@@ -9,9 +9,8 @@ module.exports = function (grunt) {
     dependencyFiles: ['!bin/Gruntfile.default.js'],
     ignoreUnusedDependencies: [
       'dependency-check',
-      'grunt-contrib-jshint',
+      'grunt-eslint',
       'grunt-contrib-watch',
-      'grunt-jscs',
       'grunt-lintspaces',
       'grunt-mocha-istanbul',
       'grunt-notify',
