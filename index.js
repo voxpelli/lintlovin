@@ -33,27 +33,27 @@ exports.initConfig = function (grunt, config, options) {
         'test/**/*.js',
         'bin/**/*.js',
         'cli/**/*.js',
-        'tasks/**/*.js',
-      ], options.jsFiles || []),
+        'tasks/**/*.js'
+      ], options.jsFiles || [])
     },
     lintspaces: {
       files: _.union([
-        '<%= eslint.src %>',
+        '<%= eslint.src %>'
       ], options.spaceFiles || []),
       options: {
         editorconfig: '.editorconfig',
-        ignores: ['js-comments'],
+        ignores: ['js-comments']
       }
     },
     watch: _.defaults(options.extraWatchTasks || {}, {
-      basic : {
+      basic: {
         files: _.union([
           '<%= lintspaces.files %>',
           'test/**/*'
         ], options.watchFiles || []),
         tasks: [!options.noMocha && options.integrationWatch ? 'test-all' : 'test']
       }
-    }),
+    })
   };
 
   if (!options.noDependencyCheck) {
@@ -61,7 +61,7 @@ exports.initConfig = function (grunt, config, options) {
       files: _.union(['<%= eslint.src %>'], options.dependencyFiles || []),
       options: {
         excludeUnusedDev: true,
-        ignoreUnused: options.ignoreUnusedDependencies || [],
+        ignoreUnused: options.ignoreUnusedDependencies || []
       }
     };
   }
@@ -89,7 +89,7 @@ exports.initConfig = function (grunt, config, options) {
     'grunt-notify',
     'grunt-lintspaces',
     'grunt-eslint',
-    'grunt-contrib-watch',
+    'grunt-contrib-watch'
   ];
 
   var testTasks = ['lintspaces', 'eslint', 'setTestEnv'];
@@ -110,7 +110,7 @@ exports.initConfig = function (grunt, config, options) {
 
   // Manually load the plugins so that we don't pollute the parent module
   // with loads of peer dependencies.
-  plugins.forEach(function loadTasks(name) {
+  plugins.forEach(function (name) {
     var cwd;
     // Uhm, HACK! But WTF Grunt!
     if (lib.fs.existsSync(__dirname + '/node_modules/' + name)) {

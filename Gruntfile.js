@@ -11,7 +11,7 @@ module.exports = function (grunt) {
       'grunt-contrib-watch',
       'grunt-lintspaces',
       'grunt-mocha-istanbul',
-      'grunt-notify',
-    ],
+      'grunt-notify'
+    ]
   });
 };
