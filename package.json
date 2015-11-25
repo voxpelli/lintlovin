@@ -1,7 +1,7 @@
 {
   "name": "lintlovin",
   "version": "1.15.1",
-  "description": "The upholder of Bloglovin standards",
+  "description": "The upholder of lovin-worthy standards",
   "main": "index.js",
   "scripts": {
     "test": "node -e \"require('grunt').tasks(['test']);\"",
@@ -11,6 +11,9 @@
     "update": "node bin/install.js"
   },
   "author": "Hugo Wetterberg <hugo@wetterberg.nu>",
+  "contributors": [
+    "Pelle Wessman <pelle@kodfabrik.se> (http://kodfabrik.se/)"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
