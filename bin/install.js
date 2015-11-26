@@ -24,6 +24,13 @@ if (!lib.fs.existsSync('.eslintrc')) {
   lib.fs.writeFileSync('.eslintrc', eslintrc);
 }
 
+if (!lib.fs.existsSync('.gitignore')) {
+  var gitignore = lib.fs.readFileSync(lib.path.join(__dirname, 'default.gitignore'), {
+    encoding: 'utf8'
+  });
+  lib.fs.writeFileSync('.gitignore', gitignore);
+}
+
 if (!lib.fs.existsSync('Gruntfile.js')) {
   var grunt = lib.fs.readFileSync(lib.path.join(__dirname, 'Gruntfile.default.js'), {
     encoding: 'utf8'
