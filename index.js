@@ -93,7 +93,7 @@ exports.initConfig = function (grunt, config, options) {
   ];
 
   var testTasks = ['lintspaces', 'eslint', 'setTestEnv'];
-  var integrationTestTasks = options.noIntegration ? ['test'] : ['test', 'mocha_istanbul:integration'];
+  var integrationTestTasks = ['test'];
 
   if (!options.noDependencyCheck) {
     plugins.push('dependency-check');
@@ -103,6 +103,12 @@ exports.initConfig = function (grunt, config, options) {
   if (!options.noMocha) {
     plugins.push('grunt-mocha-istanbul');
     testTasks.push('mocha_istanbul:basic');
+
+    if (options.alwaysIntegration) {
+      testTasks.push('mocha_istanbul:integration');
+    } else if (!options.noIntegration) {
+      integrationTestTasks.push('mocha_istanbul:integration');
+    }
   }
 
   testTasks = testTasks.concat(options.extraTestTasks || []);
