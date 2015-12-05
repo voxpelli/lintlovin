@@ -74,7 +74,9 @@ exports.initConfig = function (grunt, config, options) {
         reportFormats: ['lcov']
       },
       basic: {
-        src: options.integrationTravis && process.env.TRAVIS ? ['test/**/*.js'] : ['test/**/*.js', '!test/integration/**/*.js']
+        src: options.alwaysIntegration || (options.integrationTravis && process.env.TRAVIS)
+          ? ['test/**/*.js']
+          : ['test/**/*.js', '!test/integration/**/*.js']
       },
       integration: {
         src: ['test/integration/**/*.js']
@@ -104,9 +106,7 @@ exports.initConfig = function (grunt, config, options) {
     plugins.push('grunt-mocha-istanbul');
     testTasks.push('mocha_istanbul:basic');
 
-    if (options.alwaysIntegration) {
-      testTasks.push('mocha_istanbul:integration');
-    } else if (!options.noIntegration) {
+    if (!options.noIntegration && !options.alwaysIntegration) {
       integrationTestTasks.push('mocha_istanbul:integration');
     }
   }
