@@ -4,7 +4,6 @@ var lib = {
   fs: require('fs'),
   path: require('path')
 };
-var _ = require('lodash');
 
 exports.initConfig = function (grunt, config, options) {
   config = config || {};
@@ -27,38 +26,38 @@ exports.initConfig = function (grunt, config, options) {
   var defaults = {
     pkg: grunt.file.readJSON('package.json'),
     eslint: {
-      src: _.union([
+      src: [
         '*.js',
         'lib/**/*.js',
         'test/**/*.js',
         'bin/**/*.js',
         'cli/**/*.js',
         'tasks/**/*.js'
-      ], options.jsFiles || [])
+      ].concat(options.jsFiles || [])
     },
     lintspaces: {
-      files: _.union([
+      files: [
         '<%= eslint.src %>'
-      ], options.spaceFiles || []),
+      ].concat(options.spaceFiles || []),
       options: {
         editorconfig: '.editorconfig',
         ignores: ['js-comments']
       }
     },
-    watch: _.defaults(options.extraWatchTasks || {}, {
+    watch: Object.assign({
       basic: {
-        files: _.union([
+        files: [
           '<%= lintspaces.files %>',
           'test/**/*'
-        ], options.watchFiles || []),
+        ].concat(options.watchFiles || []),
         tasks: [!options.noMocha && options.integrationWatch ? 'test-all' : 'test']
       }
-    })
+    }, options.extraWatchTasks || {})
   };
 
   if (!options.noDependencyCheck) {
     defaults['dependency-check'] = {
-      files: _.union(['<%= eslint.src %>'], options.dependencyFiles || []),
+      files: ['<%= eslint.src %>'].concat(options.dependencyFiles || []),
       options: {
         excludeUnusedDev: true,
         ignoreUnused: options.ignoreUnusedDependencies || []
@@ -84,8 +83,7 @@ exports.initConfig = function (grunt, config, options) {
     };
   }
 
-  _.defaults(config, defaults);
-  grunt.initConfig(config);
+  grunt.initConfig(Object.assign(defaults, config));
 
   var plugins = [
     'grunt-notify',
