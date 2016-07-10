@@ -117,7 +117,7 @@ exports.initConfig = function (grunt, config, options) {
   plugins.forEach(function (name) {
     var cwd;
     // Uhm, HACK! But WTF Grunt!
-    if (lib.fs.existsSync(__dirname + '/node_modules/' + name)) {
+    if (lib.fs.existsSync(lib.path.join(__dirname, '/node_modules/', name))) {
       cwd = process.cwd();
       process.chdir(__dirname);
     }
