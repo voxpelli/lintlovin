@@ -1,6 +1,6 @@
 {
   "name": "lintlovin",
-  "version": "1.15.1",
+  "version": "3.0.0",
   "description": "The upholder of lovin-worthy standards",
   "main": "index.js",
   "scripts": {
