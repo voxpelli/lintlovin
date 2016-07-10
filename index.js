@@ -1,9 +1,7 @@
 'use strict';
 
-var lib = {
-  fs: require('fs'),
-  path: require('path')
-};
+var fsModule = require('fs');
+var pathModule = require('path');
 
 exports.initConfig = function (grunt, config, options) {
   config = config || {};
@@ -13,13 +11,13 @@ exports.initConfig = function (grunt, config, options) {
     require('time-grunt')(grunt);
   }
   if (options.noMocha === undefined) {
-    options.noMocha = !lib.fs.existsSync('test');
+    options.noMocha = !fsModule.existsSync('test');
   }
 
   if (options.noMocha) {
     options.noIntegration = true;
   } else if (options.noIntegration === undefined) {
-    options.noIntegration = !lib.fs.existsSync('test/integration');
+    options.noIntegration = !fsModule.existsSync('test/integration');
   }
 
   // Default task options
@@ -117,7 +115,7 @@ exports.initConfig = function (grunt, config, options) {
   plugins.forEach(function (name) {
     var cwd;
     // Uhm, HACK! But WTF Grunt!
-    if (lib.fs.existsSync(lib.path.join(__dirname, '/node_modules/', name))) {
+    if (fsModule.existsSync(pathModule.join(__dirname, '/node_modules/', name))) {
       cwd = process.cwd();
       process.chdir(__dirname);
     }
@@ -130,7 +128,7 @@ exports.initConfig = function (grunt, config, options) {
   });
 
   // Whenever we have some special built tasks, add them into the /tasks folder and uncomment the line below
-  // grunt.loadTasks(lib.path.join(__dirname, 'tasks'));
+  // grunt.loadTasks(pathModule.join(__dirname, 'tasks'));
 
   grunt.registerTask('setTestEnv', 'Ensure that environment (database etc) is set up for testing', function () {
     process.env.NODE_ENV = 'test';
