@@ -1,3 +1,12 @@
+### 3.x
+
+* Moved to Eslint 2.x
+* Moved to Grunt 1.x
+
+### 2.x
+
+* Moved to Eslint 1.x and Semistandard
+
 ### 1.15.1 (2015-04-13)
 
 
