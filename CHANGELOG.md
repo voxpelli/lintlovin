@@ -1,3 +1,7 @@
+### 4.x
+
+* Changed name to @voxpelli/lintlovin
+
 ### 3.x
 
 * Moved to Eslint 2.x

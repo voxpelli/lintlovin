@@ -1,6 +1,6 @@
 {
-  "name": "lintlovin",
-  "version": "3.0.0",
+  "name": "@voxpelli/lintlovin",
+  "version": "4.0.0",
   "description": "The upholder of lovin-worthy standards",
   "main": "index.js",
   "scripts": {
@@ -10,14 +10,14 @@
     "install": "node bin/install.js",
     "update": "node bin/install.js"
   },
-  "author": "Hugo Wetterberg <hugo@wetterberg.nu>",
+  "author": "Pelle Wessman <pelle@kodfabrik.se> (http://kodfabrik.se/)",
   "contributors": [
-    "Pelle Wessman <pelle@kodfabrik.se> (http://kodfabrik.se/)"
+    "Hugo Wetterberg <hugo@wetterberg.nu>"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bloglovin/lintlovin.git"
+    "url": "git://github.com/voxpelli/lintlovin.git"
   },
   "homepage": "https://github.com/bloglovin/lintlovin",
   "dependencies": {
